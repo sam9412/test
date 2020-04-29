@@ -12,6 +12,8 @@ app.set('port',process.env.PORT ||3000);
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
 
+
+
 //midlewares
 app.use(morgan('dev'));
 app.use(myconnection(mysql,{
@@ -21,7 +23,7 @@ app.use(myconnection(mysql,{
   port:'3306',
   database:'crudnode'
 },'single'))
-app.use(express.urlencoded)
+app.use(express.urlencoded({extended: false}));
 
 //rutas
 app.use('/',customerRoutes);
