@@ -15,8 +15,42 @@ controller.list=(req,res)=>{
 };
 
 controller.save=(req,res)=>{
-console.log(req.body);
-res.send("word");
+  const data=req.body;
+req.getConnection((err,con)=>{
+  con.query('INSERT INTO customer set ?',[data],(err, customer)=>{
+    res.redirect('/');
+  });
+});
+}
+
+controller.edit=(req,res)=>{
+    const {id}= req.params;
+    req.getConnection((err,con)=>{
+      con.query('SELECT * FROM customer WHERE id=?',[id],(error,customer)=>{
+        res.render('customer_edit',{
+          data:customer[0]
+        });
+      });
+    });
+}
+
+controller.update=(req,res)=>{
+  const {id}= req.params;
+  const newCostomer=req.body;
+  req.getConnection((err,con)=>{
+    con.query('UPDATE customer set? WHERE id= ?',[newCostomer,id],(err,row)=>{
+      res.redirect('/');
+    });
+  });
+};
+
+controller.delete=(req,res)=>{
+  const {id}= req.params;
+req.getConnection((error,con)=>{
+  con.query('DELETE FROM customer WHERE id=?',[id],(error,rows)=>{
+    res.redirect('/');
+  })
+})
 }
 
 module.exports=controller;
