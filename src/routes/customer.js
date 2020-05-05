@@ -2,9 +2,9 @@ const express =require('express');
 const router=express.Router();
 const customerController = require('../controllers/customerController');
 
-router.get('/',customerController.list);
+router.get('/list',customerController.list);
 router.post('/add',customerController.save);
-router.get('/delete/:id',customerController.delete);
+router.delete('/cliente/:Cliente_ID',customerController.eliminar);
 
 router.get('/update/:id',customerController.edit);
 router.post('/update/:id',customerController.update)

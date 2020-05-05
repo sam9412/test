@@ -9,8 +9,8 @@ const app=express();
 const customerRoutes = require('./routes/customer');
 //settings
 app.set('port',process.env.PORT ||3000);
-app.set('view engine','ejs');
-app.set('views',path.join(__dirname,'views'));
+//app.set('view engine','ejs');
+//app.set('views',path.join(__dirname,'views'));
 
 
 
@@ -19,9 +19,9 @@ app.use(morgan('dev'));
 app.use(myconnection(mysql,{
   host:'localhost',
   user:'root',
-  password:'samuel941220',
+  password:'',
   port:'3306',
-  database:'crudnode'
+  database:'clientes'
 },'single'))
 app.use(express.urlencoded({extended: false}));
 
