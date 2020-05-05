@@ -40,23 +40,21 @@ req.getConnection((err,con)=>{
 
 
 
-controller.edit=(req,res)=>{
-    const {id}= req.params;
-    req.getConnection((err,con)=>{
-      con.query('SELECT * FROM customer WHERE id=?',[id],(error,customer)=>{
-        res.render('customer_edit',{
-          data:customer[0]
-        });
-      });
-    });
-}
 
 controller.update=(req,res)=>{
-  const {id}= req.params;
+  const {Cliente_ID}= req.params;
   const newCostomer=req.body;
   req.getConnection((err,con)=>{
-    con.query('UPDATE customer set? WHERE id= ?',[newCostomer,id],(err,row)=>{
-      res.redirect('/');
+    con.query('UPDATE cliente set? WHERE Cliente_ID= ?',[newCostomer,id],(err,row)=>{
+      res.send({
+               Cve_Error: -1,
+               Cve_Mensaje: 'no se pudo actualizar'
+           });
+    }
+   res.send({
+            Cve_Error: 0,
+            Cve_Mensaje: 'Cliente actualizado'
+        });
     });
   });
 };
