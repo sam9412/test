@@ -42,15 +42,19 @@ req.getConnection((err,con)=>{
 
 
 controller.update=(req,res)=>{
-  const {Cliente_ID}= req.params;
-  const newCostomer=req.body;
+  var Cliente_ID= req.params.Cliente_ID;
+  var data=req.body;
+  console.log(data);
+  console.log(Cliente_ID);
+
   req.getConnection((err,con)=>{
-    con.query('UPDATE cliente set? WHERE Cliente_ID= ?',[newCostomer,id],(err,row)=>{
+    con.query('UPDATE cliente set? WHERE Cliente_ID= ?',[data,Cliente_ID],(err,row)=>{
+      if(err){
       res.send({
                Cve_Error: -1,
                Cve_Mensaje: 'no se pudo actualizar'
            });
-    }
+}
    res.send({
             Cve_Error: 0,
             Cve_Mensaje: 'Cliente actualizado'
