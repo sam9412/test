@@ -7,5 +7,5 @@ router.post('/add',customerController.save);
 router.delete('/cliente/:Cliente_ID',customerController.eliminar);
 
 
-router.post('/update/:Cliente_ID',customerController.update)
+router.put('/update/:Cliente_ID',customerController.update)
 module.exports=router;
